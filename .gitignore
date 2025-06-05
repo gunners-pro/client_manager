@@ -1,0 +1,32 @@
+.venv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Qt Designer generated Python files (se gerar automaticamente em build, ignore)
+# Caso queira versionar os .py gerados, comente esta linha
+# ui/*.py
+
+# Arquivos temporários do editor
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Pastas de build/dist, se usar PyInstaller ou similares
+build/
+dist/
+
+# Arquivos de cache do Qt Designer
+*.qrc.pyc
+
+# Outros arquivos que podem gerar conflito
+*.user
+*.pro.user
