@@ -1,4 +1,6 @@
 import sqlite3
+from typing import cast
+from dtos.customer_types import CustomerData
 from models.customer_model import Customer
 
 class DatabaseService:
@@ -35,7 +37,10 @@ class DatabaseService:
     def list_customers(self) -> list:
         self.cursor.execute("SELECT id, name, email, phone FROM customers")
         rows = self.cursor.fetchall()
-        return [Customer.from_dict(dict(row)) for row in rows]
+        return [
+            Customer.from_dict(cast(CustomerData, dict(row))) 
+            for row in rows
+        ]
     
     def search_customer_by_name(self, name: str) -> list:
         self.cursor.execute("""
@@ -43,7 +48,10 @@ class DatabaseService:
             WHERE name LIKE ?
         """, (f"%{name}%"))
         rows = self.cursor.fetchall()
-        return [Customer.from_dict(dict(row)) for row in rows]
+        return [
+            Customer.from_dict(cast(CustomerData, dict(row)))
+            for row in rows
+        ]
     
     def edit_customer(self, customer: Customer) -> bool:
         try:

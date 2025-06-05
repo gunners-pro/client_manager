@@ -1,3 +1,5 @@
+from dtos.customer_types import CustomerData
+
 class Customer:
     def __init__(self, id: int, name: str, email: str, phone: str):
         self.id = id
@@ -14,7 +16,7 @@ class Customer:
         }
     
     @classmethod
-    def from_dict(cls, data: dict):
+    def from_dict(cls, data: CustomerData):
         return cls(
             id = data.get("id", 0),
             name = data.get("name", ""),
