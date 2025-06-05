@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="feather">
+    <file>menu.svg</file>
+  </qresource>
+</RCC>
