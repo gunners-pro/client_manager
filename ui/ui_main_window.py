@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QMainWindow,
-    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QVBoxLayout, QWidget)
 import resources.icons.icons_rc
 
 class Ui_MainWindow(object):
@@ -76,6 +76,19 @@ class Ui_MainWindow(object):
         self.container_header.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.container_header)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.btnOpenCustomerForm = QPushButton(self.container_header)
+        self.btnOpenCustomerForm.setObjectName(u"btnOpenCustomerForm")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btnOpenCustomerForm.sizePolicy().hasHeightForWidth())
+        self.btnOpenCustomerForm.setSizePolicy(sizePolicy)
+        self.btnOpenCustomerForm.setMaximumSize(QSize(150, 16777215))
+
+        self.gridLayout.addWidget(self.btnOpenCustomerForm, 0, 2, 1, 1)
+
         self.toggleSidebar = QPushButton(self.container_header)
         self.toggleSidebar.setObjectName(u"toggleSidebar")
         self.toggleSidebar.setMaximumSize(QSize(30, 30))
@@ -84,10 +97,18 @@ class Ui_MainWindow(object):
         self.toggleSidebar.setIcon(icon)
         self.toggleSidebar.setIconSize(QSize(24, 24))
 
-        self.horizontalLayout_2.addWidget(self.toggleSidebar)
+        self.gridLayout.addWidget(self.toggleSidebar, 0, 0, 1, 1)
+
+        self.widget = QWidget(self.container_header)
+        self.widget.setObjectName(u"widget")
+
+        self.gridLayout.addWidget(self.widget, 0, 1, 1, 1)
 
 
-        self.verticalLayout_2.addWidget(self.container_header, 0, Qt.AlignmentFlag.AlignLeft)
+        self.horizontalLayout_2.addLayout(self.gridLayout)
+
+
+        self.verticalLayout_2.addWidget(self.container_header)
 
         self.content = QFrame(self.container)
         self.content.setObjectName(u"content")
@@ -110,6 +131,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.btnCustomer.setText(QCoreApplication.translate("MainWindow", u"Clientes", None))
         self.btnQuit.setText(QCoreApplication.translate("MainWindow", u"Sair", None))
+        self.btnOpenCustomerForm.setText(QCoreApplication.translate("MainWindow", u"Adicionar Cliente", None))
         self.toggleSidebar.setText("")
     # retranslateUi
 

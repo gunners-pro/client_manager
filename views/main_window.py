@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtCore import QSize, QPropertyAnimation, QEasingCurve
 from ui.ui_main_window import Ui_MainWindow
+from views.customer_form import CustomerForm
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -18,6 +19,8 @@ class MainWindow(QMainWindow):
 
         self.ui.toggleSidebar.clicked.connect(self.toggle_sidebar)
 
+        self.ui.btnOpenCustomerForm.clicked.connect(self.open_customer_form)
+
     def toggle_sidebar(self):
         if self.expanded:
             self.animation.setStartValue(self.ui.sidebar.width())
@@ -27,3 +30,7 @@ class MainWindow(QMainWindow):
             self.animation.setEndValue(200)
         self.animation.start()
         self.expanded = not self.expanded
+
+    def open_customer_form(self):
+        self.customer_form = CustomerForm(self)
+        self.customer_form.exec()
